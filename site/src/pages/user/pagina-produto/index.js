@@ -1,41 +1,21 @@
 import "./index.scss";
-import React, { useEffect, useState } from "react";
-// import CarrosselDeImagens from "../../components/carrosel";
-
-import { ConsultarProdutos } from "../../../api/consultaprodutos";
-import { ConsultarImagens } from "../../../api/chamadaimagem";
+import React, { useState } from "react";
+import CarrosselDeImagens from "../../../components/carrosel";
 
 export default function Produto() {
-  //   const images = [
-  //     "/assets/images/image_43.png",
-  //     "/assets/images/image_47.webp",
-  //     "/assets/images/image_48.png"
-  //   ];
-
-  const [ produtos, setProdutos ] = useState([]);
-  const [ imagens, setImagens ] = useState([]);
-  const [ id, setId ] = useState([]);
-
-  async function buscar() {
-    let prod = await ConsultarProdutos();
-
-    setProdutos(prod);
-
-    let imagem = await ConsultarImagens(id)
-
-    setImagens(imagem)
-  }
-
-  useEffect(() => {
-
-    buscar();
-
-
-  }, [])
+  const images = [
+    "/assets/images/image_43.png",
+    "/assets/images/image_47.webp",
+    "/assets/images/image_48.png"
+  ];
 
   return (
     <div className="container-produtos">
-      {/* <CarrosselDeImagens imagens={images} /> */}
+     
+      
+     
+        <CarrosselDeImagens imagens={images} />
+      
 
       {/* ............................................................ */}
 
@@ -57,7 +37,7 @@ export default function Produto() {
               <strong>FILTROS</strong>
             </h6>
             <div class="secoes" id="filtroSecoes">
-              <h6 id="filtra">
+              <h6 id='filtra'> 
                 <strong>CATEGORIAS</strong>
               </h6>
               <div class="secoes-quadrado">
@@ -136,18 +116,21 @@ export default function Produto() {
               <div class="secoes-quadrado">
                 <div class="quadrado"></div>
                 <a>
+                
                   <a>Erva-mate</a>
                 </a>
               </div>
               <div class="secoes-quadrado">
                 <div class="quadrado"></div>
                 <a>
+           
                   <a>Madeira</a>
                 </a>
               </div>
               <div class="secoes-quadrado">
                 <div class="quadrado"></div>
                 <a>
+                 
                   <a>Off-white</a>
                 </a>
               </div>
@@ -164,69 +147,85 @@ export default function Produto() {
 
           <div id="secao-produto" className="secao-produto">
             <div id="produtos" className="produtos">
-              <div class="produto-pair">
-                {produtos.map(produto => 
-                    <div class="produto">
-                    <img
-                      id={produto.id_produto}
-                      src={produto.img_link}
-                      alt=""
-
-                    />
-                    <h3 id="fixado">COMPRAR</h3>
-                    <h1 id="nome-produto" className="nome-produto">
-                      {produto.nm_produto}
-                    </h1>
-
-                    <p>
-                      POR <strong>{produto.vl_preco}</strong>
-                    </p>
-                  </div>    
-                )}
-                <div class="produto">
-                  <img
-                    id="imagem-produto"
-                    src="/assets/images/image 49.png"
-                    alt=""
-                  />
-                  <h3 id="fixado">COMPRAR</h3>
-                  <h1 id="nome-produto"> SHORT LINHO</h1>
-                  <p> Short de Linho Off-White</p>
-                  <p>
-                    POR <strong> R$ 110,00</strong>
-                  </p>
-                </div>
-
-                <div class="produto">
-                  <img
-                    id="imagem-produto"
-                    src="/assets/images/image 49.png"
-                    alt=""
-                  />
-                  <h3 id="fixado">COMPRAR</h3>
-                  <h1 id="nome-produto"> SHORT LINHO</h1>
-                  <p> Short de Linho Off-White</p>
-                  <p>
-                    POR <strong> R$ 110,00</strong>
-                  </p>
-                </div>
-                <div class="produto">
-                  <img
-                    id="imagem-produto"
-                    src="/assets/images/image 49.png"
-                    alt=""
-                  />
-                  <h3 id="fixado">COMPRAR</h3>
-                  <h1 id="nome-produto"> SHORT LINHO</h1>
-                  <p> Short de Linho Off-White</p>
-                  <p>
-                    POR <strong> R$ 110,00</strong>
-                  </p>
-                </div>
+            <div class="produto-pair">
+            <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto" className="nome-produto"> SHORT LINHO</h1>
+               
+                <p> Short de Linho Off-White</p>
+                <p>
+                
+                  POR <strong> R$ 110,00</strong>
+                </p>
               </div>
+              <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto"> SHORT LINHO</h1>
+                <p> Short de Linho Off-White</p>
+                <p>
+               
+                  POR <strong> R$ 110,00</strong>
+                </p>
+              </div>
+
+              <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto"> SHORT LINHO</h1>
+                <p> Short de Linho Off-White</p>
+                <p>
+              
+                  POR <strong> R$ 110,00</strong>
+                </p>
+              </div>
+              <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto"> SHORT LINHO</h1>
+                <p> Short de Linho Off-White</p>
+                <p>
+                 
+                  POR <strong> R$ 110,00</strong>
+                </p>
+              </div>
+            </div>
+           
             </div>
 
             <div class="produto-pair-res">
+            <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto" className="nome-produto"> SHORT LINHO</h1>
+               
+                <p> Short de Linho Off-White</p>
+                <p>
+                
+                  POR <strong> R$ 110,00</strong>
+                </p>
+              </div>
               <div class="produto">
                 <img
                   id="imagem-produto"
@@ -234,13 +233,25 @@ export default function Produto() {
                   alt=""
                 />
                 <h3 id="fixado">COMPRAR</h3>
-                <h1 id="nome-produto" className="nome-produto">
-                  {" "}
-                  SHORT LINHO
-                </h1>
+                <h1 id="nome-produto"> SHORT LINHO</h1>
+                <p> Short de Linho Off-White</p>
+                <p>
+               
+                  POR <strong> R$ 110,00</strong>
+                </p>
+              </div>
 
+              <div class="produto">
+                <img
+                  id="imagem-produto"
+                  src="/assets/images/image 49.png"
+                  alt=""
+                />
+                <h3 id="fixado">COMPRAR</h3>
+                <h1 id="nome-produto"> SHORT LINHO</h1>
                 <p> Short de Linho Off-White</p>
                 <p>
+              
                   POR <strong> R$ 110,00</strong>
                 </p>
               </div>
@@ -254,33 +265,7 @@ export default function Produto() {
                 <h1 id="nome-produto"> SHORT LINHO</h1>
                 <p> Short de Linho Off-White</p>
                 <p>
-                  POR <strong> R$ 110,00</strong>
-                </p>
-              </div>
-
-              <div class="produto">
-                <img
-                  id="imagem-produto"
-                  src="/assets/images/image 49.png"
-                  alt=""
-                />
-                <h3 id="fixado">COMPRAR</h3>
-                <h1 id="nome-produto"> SHORT LINHO</h1>
-                <p> Short de Linho Off-White</p>
-                <p>
-                  POR <strong> R$ 110,00</strong>
-                </p>
-              </div>
-              <div class="produto">
-                <img
-                  id="imagem-produto"
-                  src="/assets/images/image 49.png"
-                  alt=""
-                />
-                <h3 id="fixado">COMPRAR</h3>
-                <h1 id="nome-produto"> SHORT LINHO</h1>
-                <p> Short de Linho Off-White</p>
-                <p>
+                 
                   POR <strong> R$ 110,00</strong>
                 </p>
               </div>
