@@ -1,7 +1,7 @@
 import Rodape from "../../components/rodape";
 import React, { useState } from "react";
 import "./index.scss";
-
+import CabecalhoAdm from '../../../components/cabecalhoadm';
 export default function Painel() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [cabecalhoPosition, setCabecalhoPosition] = useState("normal");
@@ -15,47 +15,11 @@ export default function Painel() {
     setMenuVisible(!menuVisible);
   };
 
+
+  const [pag, setPag] = useState('PAINEL');
   return (
     <div className="painel-adm">
-      <div className={`cabecalho-painel ${cabecalhoPosition}`}
-        style={{width: menuVisible && "calc(100% - 200px)"}}>
-        <div className="menu-icon">
-          <img
-            className="menu1"
-            onClick={ve}
-            src="/assets/images/zabugaaa.png"
-            alt=""
-          />
-          <p> PAINEL</p>
-        </div>
-
-        <div className="alerta">
-          <img src="/assets/images/sino.png" alt="" />
-
-          <div className="admin">
-            <img src="/assets/images/adm.png" alt="" />
-            <p>ADMIN</p>
-          </div>
-        </div>
-      </div>
-      {menuVisible && (
-        <div className="menu-infos-container">
-          <div className="menu-infos">
-            <img
-              className="atelie"
-              src="/assets/images/atelieicon.png"
-              alt=""
-            />
-            <div id="menu" className="menu">
-              <h5>PAINEL</h5>
-              <a href=""> CADASTRO DE PRODUTOS</a>
-              <a href="">CONSULTA DE PRODUTOS</a>
-              <a href="">PEDIDOS</a>
-              <a href="">RELATÓRIOS</a>
-            </div>
-          </div>
-        </div>
-      )}
+       <CabecalhoAdm pag={pag} />
 
       <div className="painel">
         <div className="organiza">

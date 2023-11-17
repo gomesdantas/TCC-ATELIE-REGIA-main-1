@@ -1,23 +1,23 @@
 import { con } from './connection.js'
 
 
-export async function inserirLoginadm(loginadm) {
+// export async function inserirLoginadm(loginadm) {
 
-    const comando =
+//     const comando =
 
-        `INSERT INTO tb_admin ( ds_email, ds_senha )
-            values( ?, ? ) `;
+//         `INSERT INTO tb_admin ( ds_email, ds_senha )
+//             values( ?, ? ) `;
 
-    const [resposta] = await con.query(comando, [loginadm.email, loginadm.senha]);
-    loginadm.id = resposta.insertId;
+//     const [resposta] = await con.query(comando, [loginadm.email, loginadm.senha]);
+//     loginadm.id = resposta.insertId;
 
-    return loginadm;
+//     return loginadm;
 
-}
+// }
 
 export async function verificarEmailExistente(email) {
     try {
-        const [linhas, campos] = await con.execute('SELECT * FROM tb_admin WHERE ds_email = ?', [email]);
+        const [linhas, campos] = await con.execute('SELECT * FROM tb_admin WHERE ds_email = ?', [email || null]);
 
         return linhas.length > 0;
     } catch (err) {
@@ -25,6 +25,8 @@ export async function verificarEmailExistente(email) {
         return false;
     }
 }
+
+
 
 export async function buscaremail(email) {
     const comando =
@@ -40,15 +42,42 @@ export async function buscaremail(email) {
 
 }
 
+export async function inserirLoginadm(loginadm) {
+    if (!loginadm || typeof loginadm !== 'object' || !loginadm.ds_email) {
+        throw new Error('Objeto de login inválido ou não contém propriedade "ds_email".');
+    }
+
+    const comando = `
+        INSERT INTO tb_admin (ds_email, ds_senha)
+        VALUES (?, ?)
+    `;
+
+    const [resposta] = await con.query(comando, [loginadm.ds_email, loginadm.ds_senha]);
+    loginadm.id = resposta.insertId;
+
+    return loginadm;
+}
+
+
 export async function CadastrarProduto(produto) {
-    const comando =
-        `insert into tb_produto ( nm_produto, vl_preco, vl_promocao, bt_promocao, bt_destaque, bt_disponivel, ds_detalhes, nr_estoque, id_designer )
-                                values ( ?, ?, ?, ?, ?, ?, ?, ?, ? );`
+    const comando = `
+        INSERT INTO tb_produto (nm_produto, vl_preco, vl_promocao, bt_promocao, bt_destaque, bt_disponivel, ds_detalhes, nr_estoque, id_designer)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+    `;
 
-                                
-    const [resposta] = await con.query(comando, [ produto.nome, produto.preco, produto.promocao, produto.promocaobool, produto.destaquebool, produto.disponivelbool, produto.detalhes, produto.estoque, produto.iddesigner ]);
-    produto.id = resposta.insertId;
+    const [resposta] = await con.query(comando, [
+        produto.nm_produto,
+        produto.vl_preco,
+        produto.vl_promocao,
+        produto.bt_promocao,
+        produto.bt_destaque,
+        produto.bt_disponivel,
+        produto.ds_detalhes,
+        produto.nr_estoque,
+        produto.id_designer
+    ]);
 
+    produto.id_produto = resposta.insertId;
     return produto;
 }
 

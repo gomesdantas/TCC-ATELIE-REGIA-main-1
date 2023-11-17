@@ -22,23 +22,22 @@ const validarEmail = (email) => {
 
 async function Entrarclick() {
   ref.current.continuousStart();
-  if (!validarEmail(email)) {
-    setErro('Email inválido');
-    ref.current.complete();
-    return;
-  }
+
+  
   try {
-      const r = await axios.post('http://localhost:5000/login', {
-          email: email,
-          senha: senha
+      const r = await axios.post('http://localhost:5036/adm/login', {
+          ds_email: email,
+          ds_senha: senha
       });
 
       storage('usuario-logado', r );
       setTimeout(() =>{
-          navigate('/produtos');
-      }, 3000);   
+          navigate('/relatorios');
+      }, 5000);   
 
   }  catch (err) {
+
+    console.log(err); 
       ref.current.complete();
       setCarregando(false);
 
@@ -80,7 +79,8 @@ async function Entrarclick() {
                        </div>
                   
                     </div>
-                    <button pointer onClick={Entrarclick}>LOGIN</button>
+                    <button style={{ cursor: 'pointer' }} onClick={Entrarclick}>LOGIN</button>
+
                     <div className='erro'>
                         {erro}
                         </div>

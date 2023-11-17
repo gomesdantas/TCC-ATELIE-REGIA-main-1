@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
-import Admcontroller from './src/Controller/AdmController.js';
-import UserController from './src/Controller/UserController.js';
+import admcontroller from './src/Controller/AdmController.js';
+import userController from './src/Controller/UserController.js';
 
 
 
@@ -12,8 +12,8 @@ const server = express ();
 server.use(cors());
 server.use(express.json());
 
-server.use(Admcontroller);
-server.use(UserController);
+server.use(admcontroller);
+server.use(userController);
 
 
 

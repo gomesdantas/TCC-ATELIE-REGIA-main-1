@@ -13,23 +13,40 @@ server.post('/adm/login', async (req, resp) => {
     try {
         const loginparainserir = req.body;
 
-        const emailExistente = await verificarEmailExistente(loginparainserir.email);
+        console.log('Corpo da solicitação:', req.body);
 
-        if (emailExistente) {
-
-            const logininserida = await inserirLoginadm(loginparainserir);
-            resp.send(logininserida);
-        } else {
-
-            throw new Error('Este email não está cadastrado.');
+        if (!loginparainserir || !loginparainserir.ds_email || typeof loginparainserir.ds_email !== 'string') {
+            throw new Error('O objeto de login é inválido ou não contém propriedade "ds_email".');
         }
 
+        console.log('Verificando se o email existe...');
+        const emailExistente = await verificarEmailExistente(loginparainserir.ds_email);
+
+        console.log('Email existe:', emailExistente);
+
+        if (emailExistente) {
+            console.log('Este email já está cadastrado.');
+
+            resp.status(400).send({
+                erro: 'sucesso.',
+            });
+        } else {
+            console.log('Inserindo login...');
+            const logininserida = await inserirLoginadm(loginparainserir);
+            console.log('Login inserido:', logininserida);
+
+            resp.send(logininserida);
+        }
     } catch (err) {
+        console.error('Erro durante o login:', err);
         resp.status(400).send({
-            erro: err.message
+            erro: 'Ocorreu um erro durante o login. Tente novamente mais tarde.',
         });
     }
 });
+
+
+
 
 server.get('/adm/login/email/:email', async (req, resp) => {
     try {
@@ -55,46 +72,20 @@ server.get('/adm/login/email/:email', async (req, resp) => {
 });
 
 
-server.post('/adm/inserirloginadm', async (req, resp) => {
-    try {
-        const loginadmparainserir = req.body;
-
-        const emailinserido = await inserirLoginadm(loginadmparainserir.email);
-
-        const loginadminserido = [];
-        loginadminserido.push(loginadmparainserir);
-
-        resp.send(loginadminserido);
-    } catch (err) {
-        resp.status(400).send({
-            erro: err.message
-        });
-    }
-});
-
-
-
 
 
 server.post('/adm/cadastro/produto', async (req, resp) => {
-
+    console.log('Rota de cadastro de produto acessada');
     try {
-
-
         const produtoParaCadastrar = req.body;
-
+        console.log('Dados recebidos:', produtoParaCadastrar);
         const produtoCadastrado = await CadastrarProduto(produtoParaCadastrar);
-
         resp.send(produtoCadastrado);
-
-
     } catch (err) {
-        resp.status(400).send({
-            erro: err.message
-        });
+        console.error('Erro ao processar a solicitação:', err);
+        resp.status(500).json({ erro: 'Erro interno do servidor' });
     }
 });
-
 
 
 server.put('/adm/produto/alterar/:id', async (req, resp) => {

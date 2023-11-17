@@ -87,7 +87,11 @@ export default function Homepage() {
           <Link to='/adm/consulta/pedidos'> Consulta pedidos </Link>
           
         </div>
+
+        <Rodape />
       </div>
+
+   
     </div>
   );
 }

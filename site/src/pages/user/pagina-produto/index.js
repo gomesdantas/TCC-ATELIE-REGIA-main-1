@@ -1,22 +1,36 @@
 import "./index.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CarrosselDeImagens from "../../../components/carrosel";
+import axios from "axios";
 
 export default function Produto() {
+
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+  const [produtos, setProdutos] = useState([]);
+
+  const carregarProdutosPorCategoria = async (categoriaId) => {
+    try {
+      const response = await (categoriaId);
+
+      if (Array.isArray(response)) {
+        console.log('Produtos filtrados por categoria:', response);
+        setProdutos(response);
+      } else {
+        console.error('A resposta do servidor não contém um array de produtos:', response);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const images = [
     "/assets/images/image_43.png",
     "/assets/images/image_47.webp",
     "/assets/images/image_48.png"
   ];
-
   return (
     <div className="container-produtos">
-     
-      
-     
-        <CarrosselDeImagens imagens={images} />
-      
 
+        <CarrosselDeImagens imagens={images} />
       {/* ............................................................ */}
 
       <div className="secao-container-ordem">
@@ -32,6 +46,7 @@ export default function Produto() {
         </div>
 
         <div className="secao-container-produtos">
+
           <div class="secao-container-filtros">
             <h6 id="filtra">
               <strong>FILTROS</strong>
@@ -40,11 +55,11 @@ export default function Produto() {
               <h6 id='filtra'> 
                 <strong>CATEGORIAS</strong>
               </h6>
-              <div class="secoes-quadrado">
+              <div class="secoes-quadrado"onClick={() => carregarProdutosPorCategoria("Blusas")}>
                 <div class="quadrado"></div>
                 <a>Blusas</a>
               </div>
-              <div class="secoes-quadrado">
+              <div class="secoes-quadrado" onClick={() => carregarProdutosPorCategoria("Calças")}>
                 <div class="quadrado"></div> <a>Calças</a>
               </div>
               <div class="secoes-quadrado">
@@ -148,6 +163,15 @@ export default function Produto() {
           <div id="secao-produto" className="secao-produto">
             <div id="produtos" className="produtos">
             <div class="produto-pair">
+            {produtos.map((produto) => (
+          <div key={produto.id} className="produto">
+            <img src={produto.imagem} alt="" />
+            <h3>COMPRAR</h3>
+            <h1 className="nome-produto">{produto.nome}</h1>
+            <p>{produto.descricao}</p>
+            <p>POR <strong>R$ {produto.preco}</strong></p>
+          </div>
+        ))}
             <div class="produto">
                 <img
                   id="imagem-produto"

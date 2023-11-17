@@ -140,10 +140,11 @@ export async function FiltroPorCategoria(id) {
 
   const comando = `  
   
-  select * from tb_p_categorias 
-  inner join tb_produto on tb_produto.id_produto = tb_p_categorias.id_produto 
-  where id_categorias like ?;
-
+  SELECT tb_produto.id_produto, tb_produto.nome_produto, tb_produto.vl_preco, tb_produto.ds_detalhes
+  FROM tb_p_categorias
+  INNER JOIN tb_produto ON tb_produto.id_produto = tb_p_categorias.id_produto
+  WHERE tb_p_categorias.id_categorias LIKE ?;
+  
   `
 
   const [linhas] = await con.query(comando, [id]);
