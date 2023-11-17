@@ -1,11 +1,12 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 import "./index.scss";
 
 export default function Cadastroproduto() {
   const [nome, setNome] = useState("");
-  const [preco, setPreco] = useState('');
-  const [promocao, setPromocao] = useState('');
+  const [preco, setPreco] = useState(0);
+  const [promocao, setPromocao] = useState(0);
   const [promocaoBt, setPromocaoBt] = useState(false);
   const [destaque, setDestaque] = useState(false);
   const [disponivel, setDisponivel] = useState(false);
@@ -14,37 +15,27 @@ export default function Cadastroproduto() {
   const [designer, setDesigner] = useState(1);
 
   async function salvardados() {
-    try {
 
-      console.log('Dados enviados para o servidor:', {
-        nome,
-        preco,
-        promocao,
-        promocaoBt,
-        destaque,
-        disponivel,
-        detalhes,
-        estoque,
-        designer
-      });
+    try{
 
-      const r = await axios.post("http://localhost:5036/adm/cadastro/produto", {
-        nome: nome,
-        preco: preco,
-        promocao: promocao,
-        promocaoBt: promocaoBt,
-        destaque: destaque,
-        disponivel: disponivel,
-        detalhes: detalhes,
-        estoque: estoque,
-        designer: designer
-      });
-  
-      console.log('Resposta do servidor:', r.data);
-    } catch (error) {
-      console.error('Erro na solicitação:', error);
-    }
+    const r = await axios.post("http://localhost:5036/adm/cadastro/produto", {
+      nome: nome,
+      preco: preco,
+      promocao: promocao,
+      promocaoBt: promocaoBt,
+      destaque: destaque,
+      disponivel: disponivel,
+      detalhes: detalhes,
+      estoque: estoque,
+      designer: designer
+    });
+
+    console.log('Resposta do servidor:', r.data);
+  } catch (error) {
+    console.error('Erro na solicitação:', error);
   }
+}
+
   return (
     <div className="tudo-cadastroproduto">
       <div className="escrever">
@@ -158,26 +149,23 @@ export default function Cadastroproduto() {
           <div className="inputs4">
             <div className="valor-produto">
               <label> VALOR </label>
-              <input type="text" placeholder="R$ 00,00" value={preco}  onChange={(e) => setPreco(e.target.value)} />
+              <input type="Number" placeholder="R$ 00,00" value={preco}  onChange={(e) => setPreco(e.target.value)} />
             </div>
 
             <div className="valor-promocional-produto">
               <label> VALOR PROMOCINAL </label>
-              <input type="text" placeholder="R$ 00,00"  value={promocao} onChange={(e) => setPromocao(e.target.value)}/>
+              <input type="Number" placeholder="R$ 00,00"  value={promocao} onChange={(e) => setPromocao(e.target.value)}/>
             </div>
           </div>
 
           <div className="checkbox">
-            <input type="checkbox"  checked={promocaoBt}
-  onChange={() => setPromocaoBt(!promocaoBt)} />
+            <input type="checkbox" />
             <label> PROMOÇÃO</label>
 
-            <input type="checkbox"  checked={destaque}
-  onChange={() => setDestaque(!destaque)}/>
+            <input type="checkbox" />
             <label> DESTAQUE</label>
 
-            <input type="checkbox"  checked={disponivel}
-  onChange={() => setDisponivel(!disponivel)}/>
+            <input type="checkbox" />
             <label> DISPONÍVEL</label>
           </div>
         </div>
@@ -192,5 +180,5 @@ export default function Cadastroproduto() {
         </button>
       </div>
     </div>
-  );
-}
+  )
+};
