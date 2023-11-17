@@ -33,7 +33,7 @@ async function Entrarclick() {
       storage('usuario-logado', r );
       setTimeout(() =>{
           navigate('/relatorios');
-      }, 5000);   
+      }, 5036);   
 
   }  catch (err) {
 
