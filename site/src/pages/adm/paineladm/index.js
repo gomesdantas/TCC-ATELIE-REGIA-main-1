@@ -1,4 +1,4 @@
-import Rodape from "../../components/rodape";
+import Rodape from "../../../components/rodape";
 import React, { useState } from "react";
 import "./index.scss";
 import CabecalhoAdm from '../../../components/cabecalhoadm';

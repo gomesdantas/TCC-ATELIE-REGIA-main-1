@@ -55,7 +55,7 @@ export default function Cadastroproduto() {
       <div className="input-orisontal1">
         <div className="direita-cadastroproduto-quadrado">
           <div className="escrita-quadrado">
-            <input className="input-css" placeholder="Adicionar imagem +" />
+            <input type="file" className="input-css" placeholder="Adicionar imagem +" />
           </div>
         </div>
 

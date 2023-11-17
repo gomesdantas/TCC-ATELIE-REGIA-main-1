@@ -66,15 +66,15 @@ export async function CadastrarProduto(produto) {
     `;
 
     const [resposta] = await con.query(comando, [
-        produto.nm_produto,
-        produto.vl_preco,
-        produto.vl_promocao,
-        produto.bt_promocao,
-        produto.bt_destaque,
-        produto.bt_disponivel,
-        produto.ds_detalhes,
-        produto.nr_estoque,
-        produto.id_designer
+        produto.nome,
+        produto.preco,
+        produto.promocao,
+        produto.promocao,
+        produto.destaque,
+        produto.disponivel,
+        produto.detalhes,
+        produto.estoque,
+        produto.designer
     ]);
 
     produto.id_produto = resposta.insertId;

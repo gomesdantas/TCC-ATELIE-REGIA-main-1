@@ -12,6 +12,7 @@ import Homepage from './pages/user/pagina-inicio';
 import RelatoriosAdm from './pages/adm/relatoriosadm';
 import ConsultaProdutos from './pages/adm/consultapedidos';
 import Detalhespedido from './pages/user/detalhespedido';
+import Painel from './pages/adm/paineladm';
 
 
 
@@ -26,12 +27,11 @@ root.render(
         <Route path='/loginadm' element={<Loginadm/>}/>
         <Route path='/cadastro/produto' element={<Cadastroproduto/>}/>
         <Route path='/cadastro/cliente' element={<Cadastrocliente/>}/>
-        <Route path='/login' element={<LoginCliente/>}/>
+        <Route path='/login/cliente' element={<LoginCliente/>}/>
         <Route path='/relatorios' element={<RelatoriosAdm/>}/>
         <Route path='/adm/consulta/pedidos' element={<ConsultaProdutos/>}/>
-        <Route path='/
-        ' element={<Detalhespedido/>}/>
-    
+        <Route path='/painel' element={<Painel/>}/>
+        <Route path='/detalhes' element={<Detalhespedido/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -30,7 +30,7 @@ export default function CabecalhoAdm(props) {
             src="/assets/images/zabugaaa.png"
             alt=""
           />
-          <p> PAINEL</p>
+      <p>  {props.pag} </p>
         </div>
 
         <div className="alerta">
@@ -54,7 +54,7 @@ export default function CabecalhoAdm(props) {
               <h5>PAINEL</h5>
               <a href="http://localhost:3000/cadastro/produto"> CADASTRO DE PRODUTOS</a>
               <a href="http://localhost:3000/adm/consulta/pedidos">CONSULTA DE PRODUTOS</a>
-              <a href="http://localhost:3000/detalhespedido">PEDIDOS</a>
+              <a href="">PEDIDOS</a>
               <a href="http://localhost:3000/relatorios">RELATÓRIOS</a>
             </div>
           </div>

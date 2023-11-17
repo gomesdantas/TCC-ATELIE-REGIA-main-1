@@ -12,7 +12,9 @@
 
 .pagina-cadastrocliente {
 
-
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
 
     .cadastroc {
 
@@ -203,17 +205,12 @@
 
 
             }
-
-
             .camada3-cadastroc {
-
-
-
+                overflow: hidden;
+                width: auto;
+                height: auto;
                 position: absolute;
-
                 opacity: 0.5;
-
-
             }
 
 
